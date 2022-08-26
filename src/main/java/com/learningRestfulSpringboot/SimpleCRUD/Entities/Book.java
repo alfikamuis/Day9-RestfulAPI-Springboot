@@ -1,29 +1,45 @@
 package com.learningRestfulSpringboot.SimpleCRUD.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Setter
 @Getter
 @Entity(name="Book")
 @Table(name="book")
+@NoArgsConstructor
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",updatable = false)
+    @Column(
+            name="id",
+            updatable = false
+    )
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_name")
+    //@OneToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "book_name")
+    @Column(
+            name = "book_name",
+            nullable = false,
+            columnDefinition = "Text"
+    )
     private Integer bookName;
 
-    @Column(nullable = false,updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createdAt;
+    @Column(
+            name="created_at",
+            nullable = false,
+            updatable = false
+    )
+    private LocalDate createdAt;
+
+    public Book(Integer bookName, LocalDate createdAt) {
+        this.bookName = bookName;
+        this.createdAt = createdAt;
+    }
 }

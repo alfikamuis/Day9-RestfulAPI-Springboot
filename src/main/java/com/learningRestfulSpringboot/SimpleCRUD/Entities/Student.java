@@ -3,14 +3,14 @@ package com.learningRestfulSpringboot.SimpleCRUD.Entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Setter
 @Getter
+@Setter
 @Entity(name="Student")
 @Table(name="student")
 @NoArgsConstructor
@@ -18,28 +18,47 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",updatable = false)
+    @Column(
+            name="id",
+            updatable = false
+    )
     private Long id;
 
-    @Column(name="name",nullable = false,columnDefinition = "Text")
+    @Column(
+            name="name",
+            nullable = false,
+            length = 100,
+            columnDefinition = "Text"
+    )
     private String name;
 
-    @Column(name="email",nullable = false,columnDefinition = "Text")
+    @NaturalId
+    @Column(
+            name="email",
+            nullable = false,
+            length = 110,
+            columnDefinition = "Text",
+            unique = true)
     private String email;
 
-    @Column(name="age")
+    @Column(
+            name="age",
+            length = 100,
+            nullable = false
+    )
     @Transient
     private Integer age;
 
-    @Column(nullable = false,updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
+    @Column(
+            name="created_at",
+            nullable = false,
+            updatable = false
+    )
     private LocalDate createdAt;
 
     public Integer getAge(){
         return Period.between(createdAt,LocalDate.now()).getYears()+age;
     }
-
     public Student(String name, String email, Integer age, LocalDate createdAt) {
         this.name = name;
         this.email = email;
