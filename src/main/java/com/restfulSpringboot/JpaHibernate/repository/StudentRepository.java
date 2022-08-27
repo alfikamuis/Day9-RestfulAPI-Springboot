@@ -16,8 +16,4 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     @Query("SELECT s FROM Student s WHERE s.email =x")
     Optional<Student> findByEmail(@Param("x") String email);
 
-    @Transactional
-    @Modifying
-    @Query("DELETE FROM Student t WHERE t.id")
-    int deleteStudentById (Long id);
 }

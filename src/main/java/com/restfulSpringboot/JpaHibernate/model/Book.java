@@ -17,13 +17,7 @@ public class Book {
     private Long id;
 
     //book.student_id > student.id
-    @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn(
-            name = "student_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "student_book_id_fk")
-    )
+    @ManyToOne (fetch = FetchType.LAZY)
     private Student student;
 
     @Column(name = "book_name",nullable = false,length = 100)

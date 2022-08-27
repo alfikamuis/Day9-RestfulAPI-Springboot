@@ -36,8 +36,9 @@ public class Student {
     //relation link to student_card one to one
     @OneToOne(
             mappedBy = "student", //name on the otherside
-            orphanRemoval = true, //cascade on
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+            cascade = CascadeType.ALL,
+            optional = false,
+            fetch = FetchType.LAZY
     )
     private StudentCard studentCard;
 
@@ -45,8 +46,7 @@ public class Student {
     @OneToMany(
             mappedBy = "student",
             orphanRemoval = true,
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
-            fetch = FetchType.LAZY //fecth for list
+            cascade = CascadeType.ALL
     )
     private List<Book> book = new ArrayList<>();
 

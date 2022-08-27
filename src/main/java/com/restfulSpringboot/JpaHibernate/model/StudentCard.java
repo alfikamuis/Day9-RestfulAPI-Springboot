@@ -20,16 +20,18 @@ public class StudentCard {
 
     //One to one student_card.student_id - student.id
     //if student.id deleted, student_card with same student_id also cascade
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn( //join because as extends information of the student class
-            name = "student_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "Student_card_id_fk")
-    )
+    @OneToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Student student;
 
     @Column(name = "card_number",nullable = false,length = 100)
     private String cardNumber;
 
+    @Override
+    public String toString() {
+        return "StudentCard{" +
+                "id=" + id +
+                ", student=" + student +
+                ", cardNumber='" + cardNumber + '\'' +
+                '}';
+    }
 }
