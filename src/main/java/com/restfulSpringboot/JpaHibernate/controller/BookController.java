@@ -40,8 +40,8 @@ public class BookController {
 
     @PutMapping(value = "/book/update/{bookid}")
     public BookDTO updateBook(@PathVariable Long id,@RequestBody BookDTO request){
-        final Book studentRequest = bookService.mapToEntity(request);
-        final Book result = bookService.updateBook(id,studentRequest);
+        final Book bookRequest = bookService.mapToEntity(request);
+        final Book result = bookService.updateBook(id,bookRequest);
         return bookService.mapToDto(result);
     }
 

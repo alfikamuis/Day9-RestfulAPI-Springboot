@@ -3,7 +3,6 @@ package com.restfulSpringboot.JpaHibernate.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restfulSpringboot.JpaHibernate.dto.BookDTO;
 import com.restfulSpringboot.JpaHibernate.model.Book;
-import com.restfulSpringboot.JpaHibernate.model.Student;
 import com.restfulSpringboot.JpaHibernate.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +33,18 @@ public class BookServiceImp implements BookService{
 
     @Override
     public Book addBook(Book book) {
-        return null;
+        book.setCreatedAt(LocalDate.now());
+        return bookRepository.save(book);
     }
 
     @Override
     public Book updateBook(Long id,Book book) {
+        Book result = findBookById(id);
+        if(result != null){
+            result.setBookName(book.getBookName());
+            book.setCreatedAt(LocalDate.now());
+            return bookRepository.save(book);
+        }
         return null;
     }
 
