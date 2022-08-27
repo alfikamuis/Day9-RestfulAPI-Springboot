@@ -1,0 +1,18 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÜÓ°þ
+<
+java:S1452"&Remove usage of generic wildcard type.(ªÙ²»
+<
+java:S1452"&Remove usage of generic wildcard type.(²ÜÈÐ
+<
+java:S1452!"&Remove usage of generic wildcard type.(’ƒÇæ
+[
+java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(ýá¨¡øÿÿÿÿ
+A
+java:S1452&"&Remove usage of generic wildcard type.(ýá¨¡øÿÿÿÿ
+A
+java:S1452+"&Remove usage of generic wildcard type.(¾ø¹Þüÿÿÿÿ
+l
+java:S1128"ORemove this unused import 'org.springframework.beans.factory.annotation.Value'.(ìø›8ˆ‚‰ë­0
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ˆ‚‰ë­0

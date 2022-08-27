@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="b519a130-0731-44c7-a93e-2506ce1f24b2" name="alfika_day9_sample" url="jdbc:postgresql://localhost:5432/alfika_day9_sample" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>
