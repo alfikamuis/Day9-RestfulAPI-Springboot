@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(name = "/sample/v1/student")
+@RequestMapping(name = "/student")
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<StudentDTO> findAll(){
         return studentService.findAll()
                 .stream()
@@ -25,21 +25,27 @@ public class StudentController {
                 );
     }
 
-    @PostMapping(name = "/add")
+    @GetMapping(name = "{id}")
+    public StudentDTO findById(@PathVariable Long id){
+        final Student result = studentService.findById(id);
+        return studentService.mapToDto(result);
+    }
+
+    @PostMapping(name = "add")
     public StudentDTO add(@RequestBody StudentDTO request){
         final Student studentRequest = studentService.mapToEntity(request);
         final Student result = studentService.add(studentRequest);
         return studentService.mapToDto(result);
     }
 
-    @PutMapping(name = "/update/{id}")
+    @PutMapping(name = "update/{id}")
     public StudentDTO update(@PathVariable Long id,@RequestBody StudentDTO request){
         final Student studentRequest = studentService.mapToEntity(request);
         final Student result = studentService.update(id,studentRequest);
         return studentService.mapToDto(result);
     }
 
-    @DeleteMapping(name = "/delete/{id}")
+    @DeleteMapping(name = "/student/delete/{id}")
     public Boolean delete(@PathVariable Long id){
         return studentService.delete(id);
     }

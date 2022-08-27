@@ -32,5 +32,12 @@ public class Book {
     @Column(name = "created_at",nullable = false,updatable = false)
     private LocalDate createdAt;
 
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", student=" + student +
+                ", bookName='" + bookName + '\'' +
+                '}';
+    }
 }

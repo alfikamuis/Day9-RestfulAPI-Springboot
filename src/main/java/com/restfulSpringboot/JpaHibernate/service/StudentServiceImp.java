@@ -42,10 +42,10 @@ public class StudentServiceImp implements StudentService{
 
     @Override
     public Student update(Long id, Student student) {
-        //Optional<Student> email = studentRepository.findByEmail(student.getEmail());
-        //if(email.isPresent()){
-        //    throw new IllegalStateException("email already exist!");
-        //}
+        Optional<Student> email = studentRepository.findByEmail(student.getEmail());
+        if(email.isPresent()){
+            throw new IllegalStateException("email already exist!");
+        }
         Student result = findById(id);
         if(result != null){
             result.setName(student.getName());
